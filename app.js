@@ -1,5 +1,5 @@
 import express from 'express'
-import jwt from'express-jwt';
+import jwt from'jsonwebtoken';
 import graphqlHTTP from 'express-graphql'
 import mongoose from 'mongoose'
 
@@ -7,13 +7,6 @@ import schema from './graphql'
 import cors from 'cors'
 
 var app = express()
-
-app.use('/graphql', jwt({
-  secret: 'shhhhhhared-secret',
-  requestProperty: 'auth',
-  credentialsRequired: false,
-}))
-
 // GraphqQL server route
 app.use('/graphql', cors(), graphqlHTTP(req => ({
   schema, //o schema esta fragmentado em toda pasta graphql
