@@ -1,6 +1,7 @@
 import {
     GraphQLList
   } from 'graphql'
+  
   import republicaType from '../../types/republica'
   import RepublicaModel from '../../../models/republica'
   

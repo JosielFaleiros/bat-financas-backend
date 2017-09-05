@@ -2,10 +2,12 @@ import {
     GraphQLObjectType,
     GraphQLString,
     GraphQLFloat,
-    GraphQLID
+    GraphQLID,
+    GraphQLList
   } from 'graphql'
-  
-  export default new GraphQLObjectType({
+import GraphQLMorador from './morador'
+
+export default new GraphQLObjectType({
     name: 'Republica',
     fields: {
       _id: {
@@ -16,6 +18,9 @@ import {
       },
       caixa: {
         type: GraphQLFloat
+      },
+      moradores: {
+        type: new GraphQLList(GraphQLMorador)
       }
     }
   })

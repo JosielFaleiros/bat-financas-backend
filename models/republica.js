@@ -10,7 +10,11 @@ var RepublicaSchema = new mongoose.Schema({
     caixa: {
         type: Number,
         required: false
-    }
+    },
+    moradores: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Morador'
+    }]
 })
 
 module.exports = mongoose.model('Republica', RepublicaSchema);
