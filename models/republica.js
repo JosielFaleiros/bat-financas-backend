@@ -13,7 +13,8 @@ var RepublicaSchema = new mongoose.Schema({
     },
     caixa: {
         type: Number,
-        required: false
+        required: false,
+        default: 0
     }
 })
 
