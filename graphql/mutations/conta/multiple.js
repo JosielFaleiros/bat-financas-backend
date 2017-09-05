@@ -18,6 +18,6 @@ import {
       if(!republica)
         throw new Error('Republica não encontrada')
 
-      return await ContaModel.find({republica: republica}).populate('pagou')
+      return await ContaModel.find({republica: republica}).populate('pagou').sort('data')
     }
   }

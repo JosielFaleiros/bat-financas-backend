@@ -17,6 +17,6 @@ import {
       if(!republica)
         throw new Error('Republica não encontrada')
 
-      return await MoradorModel.find({republica: republica})
+      return await MoradorModel.find({republica: republica}).sort('nome')
     }
   }
