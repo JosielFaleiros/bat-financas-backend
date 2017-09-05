@@ -15,6 +15,11 @@ var MoradorSchema = new mongoose.Schema({
     aluguel: {
         type: Number,
         required: true
+    },
+    republica: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Republica',
+      required: true
     }
 })
 

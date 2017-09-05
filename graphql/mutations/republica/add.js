@@ -16,15 +16,16 @@ import {
       }
     },
     async resolve (root, params, options) {
-      if(options.user.republica) return
+      const republica = await RepublicaModel.findOne({user: options.user})
+      if(republica) return
 
+      params.data.user = options.user
       const republicaModel = new RepublicaModel(params.data)
       const newRepublica = await republicaModel.save()
+      
       if (!newRepublica) {
         throw new Error('Error adding new blog post')
       }
-      options.user.republica = newRepublica
-      options.user.save()
 
       return newRepublica
     }

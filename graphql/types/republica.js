@@ -5,7 +5,6 @@ import {
     GraphQLID,
     GraphQLList
   } from 'graphql'
-import GraphQLMorador from './morador'
 
 export default new GraphQLObjectType({
     name: 'Republica',
@@ -18,9 +17,6 @@ export default new GraphQLObjectType({
       },
       caixa: {
         type: GraphQLFloat
-      },
-      moradores: {
-        type: new GraphQLList(GraphQLMorador)
       }
     }
   })

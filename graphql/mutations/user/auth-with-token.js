@@ -17,14 +17,7 @@ import {
     },
     async resolve (root, params, options) {
       const teste = await jwt.verify(params.token, 'superSecret')
-      options.user = await UserModel.findById(teste._doc._id).populate({
-        path: 'republica',
-        model: 'Republica',
-        populate: {
-          path: 'moradores',
-          model: 'Morador'
-        }
-      })
+      options.user = await UserModel.findById(teste._doc._id)
     }
   }
   

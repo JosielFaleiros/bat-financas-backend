@@ -9,7 +9,7 @@ import {
     args: {},
     resolve (root, params, options) {
   
-      return options.user.republica
+      return null
         
     }
   }

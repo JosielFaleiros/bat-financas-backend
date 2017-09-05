@@ -12,11 +12,6 @@ var UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true
-  },
-  republica: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Republica',
-    required: false
   }
 })
 

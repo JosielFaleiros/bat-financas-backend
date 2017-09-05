@@ -4,11 +4,12 @@ import {
   } from 'graphql'
   
   import moradorInputType from '../../types/morador-input.js'
-  import republicaType from '../../types/republica.js'
+  import moradorType from '../../types/morador.js'
   import MoradorModel from '../../../models/morador.js'
+  import RepublicaModel from '../../../models/republica.js'
   
   export default {
-    type: republicaType,
+    type: moradorType,
     args: {
       data: {
         name: 'data',
@@ -16,19 +17,23 @@ import {
       }
     },
     async resolve (root, params, options) {
-      if(options.user.republica === null) return
+      if(options.user === null) return
+
+
+      params.data.republica = await RepublicaModel.findOne({user: options.user})
+
+      if(!params.data.republica) {
+        throw new Error('Republica não encontrada')
+      }
 
       const moradorModel = new MoradorModel(params.data)
       const newMorador = await moradorModel.save()
 
       if (!newMorador) {
-        throw new Error('Error adding new blog post')
+        throw new Error('Error adding new morador')
       }
       
-      options.user.republica.moradores.push(newMorador)
-      options.user.republica.save()
-
-      return options.user.republica
+      return newMorador
     }
   }
   

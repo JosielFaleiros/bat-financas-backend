@@ -8,9 +8,7 @@ import {
   export default {
     type: republicaType,
     args: {},
-    resolve (root, params, options) {
-  
-      return options.user.republica
-        
+    async resolve (root, params, options) {
+      return await RepublicaModel.findOne({user: options.user})
     }
   }
