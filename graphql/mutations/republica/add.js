@@ -16,15 +16,16 @@ import {
       }
     },
     async resolve (root, params, options) {
-      const republica = await RepublicaModel.findOne({user: options.user})
-      if(republica) return
+      if(options.republica) {
+        throw new Error('Usuario já possui uma republica')
+      }
 
       params.data.user = options.user
       const republicaModel = new RepublicaModel(params.data)
       const newRepublica = await republicaModel.save()
       
       if (!newRepublica) {
-        throw new Error('Error adding new blog post')
+        throw new Error('Error adding new republica')
       }
 
       return newRepublica

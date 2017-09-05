@@ -17,15 +17,10 @@ import {
       }
     },
     async resolve (root, params, options) {
-      if(options.user === null) return
-
-
-      params.data.republica = await RepublicaModel.findOne({user: options.user})
-
-      if(!params.data.republica) {
+      if(!options.republica) {
         throw new Error('Republica não encontrada')
       }
-
+      params.data.republica = options.republica
       const moradorModel = new MoradorModel(params.data)
       const newMorador = await moradorModel.save()
 
