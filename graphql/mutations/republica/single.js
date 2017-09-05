@@ -9,6 +9,8 @@ import {
     type: republicaType,
     args: {},
     async resolve (root, params, options) {
+      if(!options.user) 
+        throw new Error('Usuario não logado')
       return await RepublicaModel.findOne({user: options.user})
     }
   }

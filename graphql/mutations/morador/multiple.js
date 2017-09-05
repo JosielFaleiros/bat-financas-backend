@@ -9,8 +9,14 @@ import {
     type: new GraphQLList(moradorType),
     args: {},
     async resolve (root, params, options) {
-      if(!options.user) return
+      if(!options.user) 
+        throw new Error('Usuario não logado')
+      
       const republica = await RepublicaModel.findOne({user: options.user})
+
+      if(!republica)
+        throw new Error('Republica não encontrada')
+
       return await MoradorModel.find({republica: republica})
     }
   }
