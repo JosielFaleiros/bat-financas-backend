@@ -4,9 +4,7 @@ import mongoose from 'mongoose'
 var MoradorSchema = new mongoose.Schema({
     nome: {
         type: String,
-        required: true,
-        index: true,
-        unique: true
+        required: true
     },
     entrou: {
         type: Date,
@@ -20,6 +18,11 @@ var MoradorSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Republica',
       required: true
+    },
+    saldo: {
+        type: Number,
+        required: true,
+        default: 0
     }
 })
 
