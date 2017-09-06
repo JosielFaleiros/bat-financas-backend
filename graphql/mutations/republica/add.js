@@ -16,9 +16,14 @@ import {
       }
     },
     async resolve (root, params, options) {
+      if(!options.user)
+        throw new Error('Usuario não encontrado')
+      
+
       if(options.republica) {
         throw new Error('Usuario já possui uma republica')
       }
+
 
       params.data.user = options.user
       const republicaModel = new RepublicaModel(params.data)
