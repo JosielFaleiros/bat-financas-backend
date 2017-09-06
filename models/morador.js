@@ -10,6 +10,10 @@ var MoradorSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
+    saiu: {
+        type: Date,
+        required: false
+    },
     aluguel: {
         type: Number,
         required: true
