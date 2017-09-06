@@ -6,7 +6,7 @@ import mongoose from 'mongoose'
 import schema from './graphql'
 import cors from 'cors'
 
-var app = express()
+const app = express()
 // GraphqQL server route
 app.use('/graphql', cors(), graphqlHTTP(req => ({
   schema, //o schema esta fragmentado em toda pasta graphql
@@ -19,4 +19,4 @@ mongoose.Promise = global.Promise
 mongoose.connect('mongodb://localhost/batfinancas', {useMongoClient: true})
 
 // start server 
-var server = app.listen(process.env.PORT || 8080, () => console.log('Listening at port', server.address().port))
+const server = app.listen(process.env.PORT || 8080, () => console.log('Listening at port', server.address().port))
