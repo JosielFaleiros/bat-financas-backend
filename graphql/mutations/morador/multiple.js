@@ -8,10 +8,10 @@ import {
   export default {
     type: new GraphQLList(moradorType),
     args: {},
-    async resolve (root, params, options) {
+    resolve (root, params, options) {
       if(!options.republica)
         throw new Error('Republica não encontrada')
 
-      return await MoradorModel.find({republica: options.republica}).sort('nome')
+      return MoradorModel.find({republica: options.republica}).sort('nome')
     }
   }

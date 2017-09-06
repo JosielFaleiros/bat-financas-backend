@@ -18,11 +18,11 @@ export default {
       type: new GraphQLNonNull(GraphQLInt)
     }
   },
-  async resolve (root, params, options) {
+  resolve (root, params, options) {
     if(!options.republica)
       throw new Error('Republica não encontrada')
 
-    const contas = await ContaModel.find({
+    return ContaModel.find({
       $and: [
         {republica: options.republica}, 
         {data: {
@@ -30,6 +30,5 @@ export default {
           "$lt": new Date(params.ano, params.mes, 1)
         }}]
     }).populate('pagou').sort('data')
-    return contas
   }
 }
