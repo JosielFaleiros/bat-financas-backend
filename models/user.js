@@ -17,7 +17,7 @@ var UserSchema = new mongoose.Schema({
 
 // Hash the user's password before inserting a new user
 UserSchema.pre('save', async function(next) {
-  const user = this;
+  let user = this;
   if (this.isModified('password') || this.isNew) {
     const salt = await bcrypt.genSalt(10)
     const hash = await bcrypt.hash(user.password, salt)
