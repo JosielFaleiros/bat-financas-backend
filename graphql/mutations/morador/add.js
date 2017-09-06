@@ -21,8 +21,8 @@ import {
         throw new Error('Republica não encontrada')
       }
       params.data.republica = options.republica
-      const moradorModel = new MoradorModel(params.data)
-      const newMorador = await moradorModel.save()
+      let moradorModel = new MoradorModel(params.data)
+      let newMorador = await moradorModel.save()
 
       if (!newMorador) {
         throw new Error('Error adding new morador')

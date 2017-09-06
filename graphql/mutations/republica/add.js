@@ -26,8 +26,8 @@ import {
 
 
       params.data.user = options.user
-      const republicaModel = new RepublicaModel(params.data)
-      const newRepublica = await republicaModel.save()
+      let republicaModel = new RepublicaModel(params.data)
+      let newRepublica = await republicaModel.save()
       
       if (!newRepublica) {
         throw new Error('Error adding new republica')

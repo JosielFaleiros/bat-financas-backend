@@ -17,7 +17,7 @@ export default {
     }
   },
   async resolve (root, params, options) {
-    const teste = await jwt.verify(params.token, 'superSecret')
+    let teste = await jwt.verify(params.token, 'superSecret')
     options.user = await UserModel.findById(teste._doc._id)
     options.republica = await RepublicaModel.findOne({user: options.user})
   }

@@ -17,17 +17,16 @@ import {
       }
     },
     async resolve (root, params, options) {
-      if(!options.republica) {
+      if(!options.republica)
         throw new Error('Republica não encontrada')
-      }
 
       params.data.republica = options.republica
-      const contaModel = new ContaModel(params.data)
-      const newConta = await contaModel.save()
+      let contaModel = new ContaModel(params.data)
+      let newConta = await contaModel.save()
 
-      if (!newConta) {
+      if (!newConta)
         throw new Error('Error adding new conta')
-      }
+      
       
       return newConta
     }

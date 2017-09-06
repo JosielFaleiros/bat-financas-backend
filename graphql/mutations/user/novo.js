@@ -15,8 +15,8 @@ import {
       }
     },
     async resolve (root, params, options) {
-      const userModel = new UserModel(params.data)
-      const newUser = await userModel.save()
+      let userModel = new UserModel(params.data)
+      let newUser = await userModel.save()
       if (!newUser) {
         throw new Error('Error adding new blog post')
       }

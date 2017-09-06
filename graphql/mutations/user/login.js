@@ -16,7 +16,7 @@ export default {
     }
   },
   async resolve (root, params, options) {
-    const user = await UserModel.findOne({
+    let user = await UserModel.findOne({
       email: params.data.email
     })
     if (!user) {

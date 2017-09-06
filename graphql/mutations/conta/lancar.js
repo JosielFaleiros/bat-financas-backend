@@ -22,7 +22,7 @@ export default {
     if(!options.republica)
       throw new Error('Republica não encontrada')
 
-    const contas = await ContaModel.find({
+    let contas = await ContaModel.find({
       $and: [
         {republica: options.republica}, 
         {data: {
@@ -31,12 +31,12 @@ export default {
         }}]
     }).populate('pagou').sort('data')
     
-    var totalContas = 0
+    let totalContas = 0
     contas.map(async (conta) => {
       totalContas += conta.valor
     })
 
-    const moradores = await MoradorModel.find({republica: options.republica})
+    let moradores = await MoradorModel.find({republica: options.republica})
 
     moradores.map( (morador) => {
       contas.map( (conta) => {

@@ -19,8 +19,8 @@ var UserSchema = new mongoose.Schema({
 UserSchema.pre('save', async function(next) {
   let user = this;
   if (this.isModified('password') || this.isNew) {
-    const salt = await bcrypt.genSalt(10)
-    const hash = await bcrypt.hash(user.password, salt)
+    let salt = await bcrypt.genSalt(10)
+    let hash = await bcrypt.hash(user.password, salt)
     user.password = hash
     next()
   } else {
