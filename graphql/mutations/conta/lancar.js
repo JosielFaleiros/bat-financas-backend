@@ -30,24 +30,23 @@ export default {
           "$lt": new Date(params.ano, params.mes, 1)
         }}]
     }).populate('pagou').sort('data')
-    
-    let totalContas = 0
-    contas.map(async (conta) => {
-      totalContas += conta.valor
-    })
 
     let moradores = await MoradorModel.find({republica: options.republica})
 
     moradores.map( (morador) => {
-      contas.map( (conta) => {
-        if(conta.pagou && conta.pagou.equals(morador)){
-          morador.saldo += conta.valor
-        }
-      })
-      morador.saldo -= totalContas / moradores.length
+      let contasPagas = contas.filter((conta) => conta.pagou && conta.pagou.equals(morador))
+      morador.saldo += somarContas(contasPagas)
+      morador.saldo -= somarContas(contas) / moradores.length
       morador.saldo -= morador.aluguel
       morador.save()
     })
     return "Lançado"
   }
+}
+function somarContas(contas){
+  let totalContas = 0
+  contas.map((conta) => {
+    totalContas += conta.valor
+  })
+  return totalContas
 }
