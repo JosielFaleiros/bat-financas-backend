@@ -26,8 +26,8 @@ export default {
       $and: [
         {republica: options.republica}, 
         {data: {
-          "$gte": new Date(params.ano, params.mes - 1, 1), 
-          "$lt": new Date(params.ano, params.mes, 1)
+          "$gte": new Date(params.ano, params.mes, 1), 
+          "$lt": new Date(params.ano, params.mes + 1, 1)
         }}]
     }).populate('pagou').sort('data')
 
