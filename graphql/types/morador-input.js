@@ -10,7 +10,7 @@ export default new GraphQLInputObjectType({
   name: 'MoradorInput',
   fields: {
     nome: {type: new GraphQLNonNull(GraphQLString)},
-    entrou: {type: new GraphQLNonNull(GraphQLDate)},
+    entrou: {type: GraphQLDate},
     aluguel: {type: new GraphQLNonNull(GraphQLFloat)}
   }
 })

@@ -8,7 +8,8 @@ var MoradorSchema = new mongoose.Schema({
     },
     entrou: {
         type: Date,
-        required: true
+        required: true,
+        default: new Date()
     },
     saiu: {
         type: Date,
