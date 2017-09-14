@@ -2,6 +2,12 @@ import GraphQLDate from 'graphql-date'
 import mongoose from 'mongoose'
 
 var MoradorSchema = new mongoose.Schema({
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+        index: true
+      },
     nome: {
         type: String,
         required: true
