@@ -19,6 +19,10 @@ import {
     async resolve (root, params, options) {
       if(!options.republica)
         throw new Error('Republica não encontrada')
+
+      if(options.abilities.cannot('create', 'Conta'))
+        throw new Error('Permissão negada')
+      
       params.data.republica = options.republica
       let contaModel = new ContaModel(params.data)
       let newConta = await contaModel.save()

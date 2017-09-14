@@ -22,6 +22,9 @@ export default {
     if(!options.republica)
       throw new Error('Republica não encontrada')
 
+    if(options.abilities.cannot('update', 'Republica'))
+      throw new Error('Permissão negada')
+
     let contas = await ContaModel.find({
       $and: [
         {republica: options.republica}, 

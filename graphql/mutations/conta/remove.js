@@ -17,6 +17,9 @@ export default {
     }
   },
   async resolve (root, params, options) {
+    if(options.abilities.cannot('delete', 'Conta'))
+      throw new Error('Permissão negada')
+
     let removedConta = await ContaModel
       .findOneAndRemove({$and:[{republica: options.republica}, {_id: params.id}]})
 

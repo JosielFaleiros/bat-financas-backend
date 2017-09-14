@@ -17,6 +17,9 @@ export default {
     }
   },
   async resolve (root, params, options) {
+    if(options.abilities.cannot('delete', 'Morador'))
+      throw new Error('Permissão negada')
+
     let removedMorador = await MoradorModel
       .findOneAndRemove({$and:[{republica: options.republica}, {_id: params.id}]})
 
