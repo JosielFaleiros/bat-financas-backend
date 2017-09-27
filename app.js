@@ -16,7 +16,7 @@ app.use('/graphql', cors(), graphqlHTTP(req => ({
 
 // Connect mongo database
 mongoose.Promise = global.Promise
-mongoose.connect('mongodb://dbuser:' + process.env.DB_SECRET + '@ds129394.mlab.com:29394/batfinancas', {useMongoClient: true})
+mongoose.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_SECRET + '@' + process.env.DB_HOST + '/batfinancas', {useMongoClient: true})
 
 // start server 
 const server = app.listen(process.env.PORT || 8080, () => console.log('Listening at port', server.address().port))
