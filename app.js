@@ -15,7 +15,6 @@ app.use('/graphql', cors(), graphqlHTTP(req => ({
 })))
 
 // Connect mongo database
-mongoose.Promise = global.Promise
 mongoose.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_SECRET + '@' + process.env.DB_HOST + '/batfinancas', {useMongoClient: true})
 
 // start server 
