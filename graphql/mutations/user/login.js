@@ -7,6 +7,8 @@ import userType from '../../types/novo-usuario-input.js'
 import UserModel from '../../../models/user.js'
 import jwt from 'jsonwebtoken'
 
+const env       = process.env.NODE_ENV || 'development'
+const config = require('../../../config/config')[env]
 export default {
   type: GraphQLString,
   args: {
@@ -26,6 +28,6 @@ export default {
     if(!await user.comparePassword(params.data.password))
       throw new Error('Senha incorreta.')
 
-    return jwt.sign(user, 'superSecret', {});
+    return jwt.sign(user, config.secret, {});
   }
 }

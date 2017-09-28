@@ -3,13 +3,16 @@ import {
     GraphQLString,
     GraphQLBoolean
   } from 'graphql'
-  
+
 import userType from '../../types/novo-usuario-input.js'
 import UserModel from '../../../models/user.js'
 import jwt from 'jsonwebtoken'
 import RepublicaModel from '../../../models/republica.js'
 import MoradorModel from '../../../models/morador.js'
 import { AbilityBuilder, Ability } from 'casl'
+
+const env       = process.env.NODE_ENV || 'development'
+const config = require('../../../config/config')[env]
 
 export default {
   type: GraphQLBoolean,
@@ -21,7 +24,7 @@ export default {
   },
   async resolve (root, params, options) {
     try {
-      var teste = await jwt.verify(params.token, 'superSecret')
+      var teste = await jwt.verify(params.token, config.secret)
     } catch (err){
       return false
     }
@@ -37,7 +40,7 @@ export default {
     return true
   }
 }
-  
+
 function defineAbilities(options) {
   const { rules, can } = AbilityBuilder.extract()
 

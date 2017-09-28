@@ -5,6 +5,8 @@ import mongoose from 'mongoose'
 
 import schema from './graphql'
 import cors from 'cors'
+const env       = process.env.NODE_ENV || 'development'
+const config = require('./config/config')[env]
 
 const app = express()
 // GraphqQL server route
@@ -15,7 +17,7 @@ app.use('/graphql', cors(), graphqlHTTP(req => ({
 })))
 
 // Connect mongo database
-mongoose.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_SECRET + '@' + process.env.DB_HOST + '/batfinancas', {useMongoClient: true})
+mongoose.connect(config.dialect + '://' + config.username + ':' + config.password + '@' + config.host + '/' + config.database, {useMongoClient: true})
 
-// start server 
+// start server
 const server = app.listen(process.env.PORT || 8080, () => console.log('Listening at port', server.address().port))

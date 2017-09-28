@@ -2,10 +2,13 @@ import {
     GraphQLNonNull,
     GraphQLString
   } from 'graphql'
-  
+
   import userType from '../../types/novo-usuario-input.js'
   import UserModel from '../../../models/user.js'
   import jwt from 'jsonwebtoken'
+
+  const env       = process.env.NODE_ENV || 'development'
+  const config = require('../../../config/config')[env]
   export default {
     type: GraphQLString,
     args: {
@@ -20,7 +23,6 @@ import {
       if (!newUser) {
         throw new Error('Error adding new blog post')
       }
-      return jwt.sign(newUser, 'superSecret', {})
+      return jwt.sign(newUser, config.secret, {})
     }
   }
-  
