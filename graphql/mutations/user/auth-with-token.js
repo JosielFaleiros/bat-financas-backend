@@ -21,7 +21,7 @@ export default {
   },
   async resolve (root, params, options) {
     try {
-      var teste = await jwt.verify(params.token, 'superSecret')
+      var teste = await jwt.verify(params.token, process.env.JWT_SECRET)
     } catch (err){
       return false
     }

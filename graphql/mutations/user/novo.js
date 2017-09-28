@@ -20,7 +20,7 @@ import {
       if (!newUser) {
         throw new Error('Error adding new blog post')
       }
-      return jwt.sign(newUser, 'superSecret', {})
+      return jwt.sign(newUser, process.env.JWT_SECRET, {})
     }
   }
   
