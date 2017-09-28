@@ -27,7 +27,7 @@ export default {
 
     if(!await user.comparePassword(params.data.password))
       throw new Error('Senha incorreta.')
-
+    
     return jwt.sign(user, config.secret, {});
   }
 }
